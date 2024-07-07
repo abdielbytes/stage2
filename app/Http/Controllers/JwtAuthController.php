@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,10 +26,10 @@ class JwtAuthController extends Controller
                 'phone' => 'string|max:12',
                 'password' => 'required|min:7|max:255',
             ]);
-            Log::info('Attributes before UUID generation:', $attributes);
+//            Log::info('Attributes before UUID generation:', $attributes);
             $attributes['userId'] = (string)Str::uuid();
             $attributes['password'] = Hash::make($attributes['password']);
-            Log::info('Attributes after UUID generation:', $attributes);
+//            Log::info('Attributes after UUID generation:', $attributes);
             $user = User::create($attributes);
 
             try {
@@ -63,36 +63,6 @@ class JwtAuthController extends Controller
             ], 422);
         }
     }
-//        public function register(Request $request)
-//    {
-//        // Validation
-//        $validator = Validator::make($request->all(), [
-//            'firstName' => 'required|string|max:255',
-//            'lastName' => 'required|string|max:255',
-//            'email' => 'required|string|email|max:255|unique:users,email',
-//            'phone' => 'string|max:12',
-//            'password' => 'required|min:7|max:255',
-//        ]);
-//
-//        if ($validator->fails()) {
-//            return response()->json($validator->errors(), 422);
-//        }
-//
-//        // Create user
-//        $user = User::create([
-//            'name' => $request->name,
-//            'email' => $request->email,
-//            'password' => Hash::make($request->password),
-//        ]);
-//
-//        // Generate token
-//        $token = JWTAuth::fromUser($user);
-//
-//        return response()->json([
-//            'user' => $user,
-//            'token' => $token,
-//        ], 201);
-//    }
 
     public function login(Request $request)
     {

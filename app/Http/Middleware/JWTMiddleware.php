@@ -6,7 +6,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class JwtMiddleware extends BaseMiddleware
+class JWTMiddleware extends BaseMiddleware
 {
     public function handle($request, Closure $next)
     {
